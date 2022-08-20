@@ -48,6 +48,11 @@ export class MainComponent implements OnInit {
     this.authService.getCurrentUser((result: any, firstTime: any) => {
 
       if (result.isAuth) {
+        
+        if (result.claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname"]) {
+          this.vm.userName = result.claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname"]
+        }
+        
         if (result.claims.name != null) {
           this.vm.userName = result.claims.name
         }
